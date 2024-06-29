@@ -6,7 +6,7 @@ export const Data = {
     email: "pranaykodam.213@gmail.com",
     telephone: "(+91) 7013643290",
     image:
-      "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYH9z3oOm7hBVeFOex8b70wZdoj4z9fpx2upfXZMyzOx0NMboZ-V19q5WG2YwOXC6xMrWcpXoPFOEdZfBCxAy_5XMNH7WLx4DM=w532-h802", // You can replace this with the path to your image
+      "https://res.cloudinary.com/daawlpc2s/image/upload/v1719648872/profile/pranay.jpg", // You can replace this with the path to your image
   },
   aboutMe: {
     label: "Profile Summary",
