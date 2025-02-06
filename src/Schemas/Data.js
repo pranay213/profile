@@ -59,7 +59,7 @@ export const Data = {
   experience: {
     works: [
       {
-        title: "Full Stack Developer / MERN Stack Developer",
+        title: "Software Developer",
         period: "04/2022 - Present",
         company: "BlocMatrix IT Solutions Pvt Ltd",
         description: [
@@ -70,8 +70,17 @@ export const Data = {
       },
       {
         title: "Web Developer",
-        period: "04/2021 - 11/2021",
+        period: "04/2021 - 04/2022",
         company: "VHONK Digital Media and Private Ltd",
+        description: [
+          "Developed and maintained web applications using modern technologies.",
+          // Add more if needed
+        ],
+      },
+      {
+        title: "Web Developer",
+        period: "02/2020 - 02/2021",
+        company: "S2h Minds",
         description: [
           "Developed and maintained web applications using modern technologies.",
           // Add more if needed
