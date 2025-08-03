@@ -1672,6 +1672,14 @@
         window.addEventListener('scroll', () => {
             const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             document.getElementById('scrollProgressBar').style.width = scrolled + '%';
+
+            // Set dark theme by default
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                localStorage.setItem('theme', 'dark');
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '🌙';
+            }
         });
 
         // Scroll to Top Button
