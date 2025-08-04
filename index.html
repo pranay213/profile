@@ -90,7 +90,6 @@
             background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 1rem 0;
             transition: all 0.3s ease;
         }
 
@@ -104,7 +103,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 1rem 2rem;
+            position: relative;
         }
 
         .logo {
@@ -150,6 +150,35 @@
             width: 100%;
         }
 
+        /* Ripple Effect Base */
+        .mat-ripple {
+            position: relative;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .mat-ripple-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0;
+            transform: scale(0);
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mat-ripple:active .mat-ripple-circle {
+            opacity: 0.1;
+            transform: scale(1);
+            transition: transform 0s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Theme Toggle */
         .theme-toggle {
             background: none;
             border: 2px solid var(--border-color);
@@ -157,28 +186,118 @@
             padding: 0.5rem;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .theme-toggle .icon {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .theme-toggle:hover {
             background: var(--accent-color);
             border-color: var(--accent-color);
+        }
+
+        .theme-toggle:hover .icon {
             transform: rotate(180deg);
         }
 
+        /* Mobile Menu */
         .mobile-menu {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
+            padding: 12px;
+            border-radius: 50%;
+            position: relative;
         }
 
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
+        .mobile-menu .bar {
+            width: 24px;
+            height: 2px;
             background: var(--text-primary);
-            margin: 3px 0;
-            transition: 0.3s;
+            margin: 4px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .mobile-menu.active .bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .mobile-menu.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active .bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 12px 12px;
+            margin: 0;
+        }
+
+        [data-theme="light"] .mobile-nav-links {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .mobile-nav-links.active {
+            display: flex;
+        }
+
+        .mobile-nav-links li {
+            width: 100%;
+            text-align: center;
+        }
+
+        .mobile-nav-links a {
+            position: relative;
+            display: block;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 16px 0;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent-color);
+            background: rgba(var(--accent-color-rgb), 0.05);
+        }
+
+        /* Add this to your root CSS variables if not already present */
+        :root {
+            --accent-color-rgb: 0, 245, 255;
+            /* Example - replace with your actual accent color RGB */
         }
 
         /* Hero Section */
@@ -1044,13 +1163,26 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle">🌙</button>
-            <div class="mobile-menu" id="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="theme-toggle mat-ripple" id="themeToggle">
+                <span class="mat-ripple-circle"></span>
+                <span class="icon">🌙</span>
+            </button>
 
+            <div class="mobile-menu mat-ripple" id="mobileMenu">
+                <span class="mat-ripple-circle"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
+
+            <ul class="mobile-nav-links" id="mobileNavLinks">
+                <li><a href="#home" class="mat-ripple">Home</a></li>
+                <li><a href="#about" class="mat-ripple">About</a></li>
+                <li><a href="#skills" class="mat-ripple">Skills</a></li>
+                <li><a href="#experience" class="mat-ripple">Experience</a></li>
+                <li><a href="#projects" class="mat-ripple">Projects</a></li>
+                <li><a href="#contact" class="mat-ripple">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -1261,7 +1393,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="fade-in">
+    <section id="projects" class="fade-in visible">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
@@ -1666,21 +1798,23 @@
                         block: 'start'
                     });
                 }
+
+                // Close mobile menu when a link is clicked
+                const mobileNavLinks = document.getElementById('mobileNavLinks');
+                if (mobileNavLinks.classList.contains('active')) {
+                    mobileNavLinks.classList.remove('active');
+                    document.getElementById('mobileMenu').classList.remove('active');
+                }
             });
         });
+
+
+
 
         // Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             document.getElementById('scrollProgressBar').style.width = scrolled + '%';
-
-            // Set dark theme by default
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            if (savedTheme === 'light') {
-                localStorage.setItem('theme', 'dark');
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-            }
         });
 
         // Scroll to Top Button
@@ -1759,12 +1893,39 @@
             e.target.reset();
         });
 
-        // Mobile Menu Toggle (Basic implementation)
+        // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobileMenu');
-        const navLinks = document.querySelector('.nav-links');
+        const mobileNavLinks = document.getElementById('mobileNavLinks');
 
         mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('active');
+            mobileNavLinks.classList.toggle('active');
+
+            // Toggle hamburger menu animation
+            const spans = mobileMenu.querySelectorAll('span');
+            if (mobileMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileNavLinks.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileNavLinks.classList.remove('active');
+
+                // Reset hamburger menu animation
+                const spans = mobileMenu.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
         });
 
         // Add some interactive animations
@@ -1866,42 +2027,6 @@
         }
 
         setInterval(createParticle, 500);
-
-        // Add cursor trail effect
-        const trail = [];
-        const trailLength = 20;
-
-        document.addEventListener('mousemove', (e) => {
-            trail.push({ x: e.clientX, y: e.clientY });
-            if (trail.length > trailLength) {
-                trail.shift();
-            }
-        });
-
-        function drawTrail() {
-            document.querySelectorAll('.cursor-trail').forEach(el => el.remove());
-
-            trail.forEach((point, index) => {
-                const trailElement = document.createElement('div');
-                trailElement.className = 'cursor-trail';
-                trailElement.style.position = 'fixed';
-                trailElement.style.left = point.x + 'px';
-                trailElement.style.top = point.y + 'px';
-                trailElement.style.width = '4px';
-                trailElement.style.height = '4px';
-                trailElement.style.background = 'var(--accent-color)';
-                trailElement.style.borderRadius = '50%';
-                trailElement.style.pointerEvents = 'none';
-                trailElement.style.opacity = (index / trailLength) * 0.5;
-                trailElement.style.transform = `scale(${index / trailLength})`;
-                trailElement.style.zIndex = '9999';
-                document.body.appendChild(trailElement);
-            });
-
-            requestAnimationFrame(drawTrail);
-        }
-
-        drawTrail();
     </script>
 </body>
 
