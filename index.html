@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranay Kumar Kodam - Full Stack Developer</title>
-    <meta name="description"
-        content="Pranay Kumar Kodam - Experienced Full Stack Developer specializing in MERN Stack and React Native development. Crafting exceptional digital experiences.">
-    <meta name="keywords"
-        content="Pranay Kumar Kodam, Full Stack Developer, MERN Stack, React Native, Web Development, Mobile Development, Software Engineer, Digital Experiences">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Pranay Kumar Kodam">
     <style>
-        /* Your existing CSS remains the same */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -20,692 +14,1222 @@
         }
 
         :root {
-            --primary-bg: #0a0a0a;
-            --secondary-bg: #1a1a1a;
-            --accent-color: #00f5ff;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg: #050505;
+            --surface: #0d0d0d;
+            --accent-1: #6366f1;
+            --accent-2: #ec4899;
+            --accent-3: #14b8a6;
+            --text: #ffffff;
+            --text-dim: #9ca3af;
         }
 
         [data-theme="light"] {
-            --primary-bg: #ffffff;
-            --secondary-bg: #f8f9fa;
-            --accent-color: #2563eb;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-bg: rgba(0, 0, 0, 0.03);
-            --border-color: rgba(0, 0, 0, 0.1);
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --accent-1: #6366f1;
+            --accent-2: #ec4899;
+            --accent-3: #14b8a6;
+            --text: #0a0a0a;
+            --text-dim: #6b7280;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 10000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: blob 20s infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent-1);
+            top: -300px;
+            left: -200px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-2);
+            bottom: -250px;
+            right: -150px;
+            animation-delay: -10s;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-3);
+            top: 50%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(250, 250, 250, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
             transition: all 0.3s ease;
         }
 
-        /* Your existing CSS continues here... */
-        /* (All your existing CSS remains unchanged) */
-        
-        /* Updated project title styles */
-        .project-title {
-            color: var(--accent-color);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
         }
-        
-        /* Updated project logo styles */
-        .project-logo {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 15px;
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .theme-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+            border-color: var(--accent-1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text);
+            transition: all 0.3s;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 3rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1100px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: var(--accent-1);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge::before {
+            content: '✦';
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-desc {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
             color: white;
-            font-weight: bold;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
         }
-        
-        .project-logo.project1 {
-            background: linear-gradient(135deg, #4ade80, #22c55e);
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        
-        .project-logo.project2 {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+
+        .btn-primary:hover::before {
+            opacity: 1;
         }
-        
-        .project-logo.project3 {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
         }
-        
-        .project-logo.project4 {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+
+        .btn span {
+            position: relative;
+            z-index: 1;
         }
-        
-        .project-logo.project5 {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
-        
-        .project-logo.project6 {
-            background: linear-gradient(135deg, #f97316, #ea580c);
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-1);
+            transform: translateY(-2px);
         }
-        
-        .project-logo.project7 {
-            background: linear-gradient(135deg, #10b981, #059669);
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
         }
-        
-        .project-logo.project8 {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
-        
-        .project-logo.project9 {
-            background: linear-gradient(135deg, #65a30d, #4d7c0f);
+
+        section {
+            position: relative;
+            padding: 8rem 3rem;
+            z-index: 1;
         }
-        
-        .project-logo.project10 {
-            background: linear-gradient(135deg, #ec4899, #db2777);
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
         }
-        
-        .project-logo.project11 {
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: var(--accent-1);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
         }
-        
-        .project-logo.project12 {
-            background: linear-gradient(135deg, #14b8a6, #0d9488);
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
         }
-        
-        .project-logo.project13 {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .project-logo.project14 {
-            background: linear-gradient(135deg, #059669, #047857);
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .project-logo.project15 {
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            opacity: 0;
+            transition: opacity 0.4s;
         }
-        
-        .project-logo.project16 {
-            background: linear-gradient(135deg, #1f2937, #374151);
+
+        .stat-card:hover::before {
+            opacity: 0.05;
         }
-        
-        .project-logo.project17 {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-1);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
         }
-        
-        .project-logo.project18 {
-            background: linear-gradient(135deg, #16a34a, #15803d);
+
+        .stat-num {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-dim);
+            position: relative;
+            z-index: 1;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skill-box {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-box:hover {
+            border-color: var(--accent-1);
+            transform: translateY(-5px);
+        }
+
+        .skill-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .skill-item {
+            padding: 0.6rem 1.2rem;
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: var(--accent-1);
+            color: white;
+            border-color: var(--accent-1);
+            transform: translateY(-2px);
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            grid-column: 1;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-1);
+            border: 3px solid var(--bg);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--accent-1);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-1);
+            transform: scale(1.02);
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-1);
+        }
+
+        .timeline-company {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.1), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-1);
+            box-shadow: 0 25px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-duration {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-desc {
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            padding: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.03);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-1);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            min-width: 45px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1.2rem;
+            background: rgba(99, 102, 241, 0.03);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        footer {
+            padding: 4rem 3rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--accent-1);
+            border-color: var(--accent-1);
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        footer p {
+            color: var(--text-dim);
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 1024px) {
+            .timeline-line {
+                left: 0;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                grid-column: 1;
+                margin-left: 2rem;
+            }
+
+            .timeline-dot {
+                left: 0;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--surface);
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+                transition: right 0.3s;
+                gap: 1.5rem;
+            }
+
+            .nav-menu.active {
+                right: 2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero, section {
+                padding: 4rem 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
-
 <body data-theme="dark">
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-spinner"></div>
-    </div>
+    <div class="noise"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
 
-    <!-- Scroll Progress -->
-    <div class="scroll-progress">
-        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">PK</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="theme-toggle mat-ripple" id="themeToggle">
-                <span class="mat-ripple-circle"></span>
-                <span class="icon">🌙</span>
-            </button>
-
-            <div class="mobile-menu mat-ripple" id="mobileMenu">
-                <span class="mat-ripple-circle"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-            <ul class="mobile-nav-links" id="mobileNavLinks">
-                <li><a href="#home" class="mat-ripple">Home</a></li>
-                <li><a href="#about" class="mat-ripple">About</a></li>
-                <li><a href="#skills" class="mat-ripple">Skills</a></li>
-                <li><a href="#experience" class="mat-ripple">Experience</a></li>
-                <li><a href="#projects" class="mat-ripple">Projects</a></li>
-                <li><a href="#contact" class="mat-ripple">Contact</a></li>
-            </ul>
+    <nav>
+        <div class="logo">PK</div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-btn" id="themeBtn">🌙</button>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Pranay Kumar</h1>
-            <p class="hero-subtitle">Full Stack Developer</p>
-            <p class="hero-description">
-                Crafting exceptional digital experiences with cutting-edge technologies.
-                Specialized in MERN Stack and React Native development.
+            <div class="hero-badge">Available for opportunities</div>
+            <h1>
+                HI, I'M <span class="gradient-text">PRANAY KUMAR</span>
+            </h1>
+            <p class="hero-desc">
+                Full Stack Developer crafting exceptional digital experiences with cutting-edge technologies. Specialized in MERN Stack and React Native development.
             </p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary"><span>View Projects</span></a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-hint">Scroll to explore ↓</div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <div class="section-tag">About Me</div>
+            <h2 class="section-title">Creating Digital Excellence</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-num">5+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">20+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Companies</div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="fade-in">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Full Stack Developer & Problem Solver</h3>
-                <p>
-                    With over 5+ years of experience in web and mobile development, I specialize in creating
-                    scalable, high-performance applications using modern technologies. My expertise spans
-                    across the entire development lifecycle, from conception to deployment.
-                </p>
-                <p>
-                    I'm passionate about clean code, user experience, and staying up-to-date with the latest
-                    industry trends. My goal is to build applications that not only meet business requirements
-                    but also provide exceptional user experiences.
-                </p>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">20+</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">10+</span>
-                    <span class="stat-label">Technologies</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Companies</span>
-                </div>
-            </div>
+    <section id="skills">
+        <div class="section-header">
+            <div class="section-tag">Expertise</div>
+            <h2 class="section-title">Skills & Technologies</h2>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="fade-in">
-        <h2 class="section-title">Skills & Technologies</h2>
         <div class="skills-grid">
-            <div class="skill-category">
+            <div class="skill-box">
                 <h3>Frontend Development</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag react"><span class="skill-icon">⚛️</span>React.js</span>
-                    <span class="skill-tag nextjs"><span class="skill-icon">▲</span>Next.js</span>
-                    <span class="skill-tag react-native"><span class="skill-icon">📱</span>React Native</span>
-                    <span class="skill-tag html"><span class="skill-icon">🌐</span>HTML5</span>
-                    <span class="skill-tag css"><span class="skill-icon">🎨</span>CSS3</span>
-                    <span class="skill-tag tailwind"><span class="skill-icon">💨</span>Tailwind CSS</span>
-                    <span class="skill-tag bootstrap"><span class="skill-icon">🅱️</span>Bootstrap</span>
-                    <span class="skill-tag mui"><span class="skill-icon">🎭</span>Material UI</span>
-                    <span class="skill-tag redux"><span class="skill-icon">🔄</span>Redux</span>
-                    <span class="skill-tag"><span class="skill-icon">📊</span>Context API</span>
+                <div class="skill-list">
+                    <span class="skill-item">React.js</span>
+                    <span class="skill-item">Next.js</span>
+                    <span class="skill-item">React Native</span>
+                    <span class="skill-item">TypeScript</span>
+                    <span class="skill-item">Tailwind CSS</span>
+                    <span class="skill-item">Redux</span>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-box">
                 <h3>Backend Development</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag nodejs"><span class="skill-icon">🟢</span>Node.js</span>
-                    <span class="skill-tag express"><span class="skill-icon">🚀</span>Express.js</span>
-                    <span class="skill-tag php"><span class="skill-icon">🐘</span>PHP</span>
-                    <span class="skill-tag api"><span class="skill-icon">🔗</span>RESTful APIs</span>
-                    <span class="skill-tag jwt"><span class="skill-icon">🔐</span>JWT</span>
-                    <span class="skill-tag"><span class="skill-icon">🔌</span>GraphQL</span>
-                    <span class="skill-tag"><span class="skill-icon">⚡</span>Socket.io</span>
+                <div class="skill-list">
+                    <span class="skill-item">Node.js</span>
+                    <span class="skill-item">Express.js</span>
+                    <span class="skill-item">PHP</span>
+                    <span class="skill-item">REST APIs</span>
+                    <span class="skill-item">GraphQL</span>
+                    <span class="skill-item">Socket.io</span>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3>Databases & Storage</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag mongodb"><span class="skill-icon">🍃</span>MongoDB</span>
-                    <span class="skill-tag mysql"><span class="skill-icon">🐬</span>MySQL</span>
-                    <span class="skill-tag sql"><span class="skill-icon">💾</span>SQL</span>
-                    <span class="skill-tag"><span class="skill-icon">🔥</span>Firebase</span>
-                    <span class="skill-tag"><span class="skill-tag redis"><span class="skill-icon">📦</span>Redis</span>
+            <div class="skill-box">
+                <h3>Database & Storage</h3>
+                <div class="skill-list">
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">MySQL</span>
+                    <span class="skill-item">PostgreSQL</span>
+                    <span class="skill-item">Redis</span>
+                    <span class="skill-item">Firebase</span>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag javascript"><span class="skill-icon">🟨</span>JavaScript</span>
-                    <span class="skill-tag typescript"><span class="skill-icon">🔷</span>TypeScript</span>
-                    <span class="skill-tag php"><span class="skill-icon">🐘</span>PHP</span>
-                    <span class="skill-tag"><span class="skill-icon">🐍</span>Python</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>DevOps & Cloud Infrastructure</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag docker"><span class="skill-icon">🐳</span>Docker</span>
-                    <span class="skill-tag jenkins"><span class="skill-icon">👨‍💼</span>Jenkins</span>
-                    <span class="skill-tag nginx"><span class="skill-icon">🌐</span>Nginx</span>
-                    <span class="skill-tag pm2"><span class="skill-icon">🚀</span>PM2</span>
-                    <span class="skill-tag aws"><span class="skill-icon">☁️</span>AWS</span>
-                    <span class="skill-tag gcp"><span class="skill-icon">🌤️</span>GCP</span>
-                    <span class="skill-tag vercel"><span class="skill-icon">▲</span>Vercel</span>
-                    <span class="skill-tag"><span class="skill-icon">🌊</span>Cloudflare</span>
-                    <span class="skill-tag"><span class="skill-icon">🔄</span>GitHub Actions</span>
-                    <span class="skill-tag"><span class="skill-icon">🚇</span>Cloudflare Tunnels</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>CI/CD & Automation</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag"><span class="skill-icon">🔄</span>Auto Deployment</span>
-                    <span class="skill-tag"><span class="skill-icon">📱</span>Mobile App Deployment</span>
-                    <span class="skill-tag"><span class="skill-icon">🏷️</span>Version Management</span>
-                    <span class="skill-tag"><span class="skill-icon">🔄</span>CI/CD Pipelines</span>
-                    <span class="skill-tag"><span class="skill-icon">📦</span>Container Migration</span>
-                    <span class="skill-tag"><span class="skill-icon">🔧</span>Infrastructure as Code</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Server & Infrastructure</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag"><span class="skill-icon">🗺️</span>Custom Map Server</span>
-                    <span class="skill-tag"><span class="skill-icon">📧</span>Custom Mail Server</span>
-                    <span class="skill-tag"><span class="skill-icon">✉️</span>Mailing Services</span>
-                    <span class="skill-tag"><span class="skill-icon">🌐</span>Load Balancing</span>
-                    <span class="skill-tag"><span class="skill-icon">🔒</span>SSL/TLS Configuration</span>
-                    <span class="skill-tag"><span class="skill-icon">📊</span>Server Monitoring</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Development Tools</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag git"><span class="skill-icon">🗂️</span>Git</span>
-                    <span class="skill-tag"><span class="skill-icon">🐙</span>GitHub</span>
-                    <span class="skill-tag"><span class="skill-icon">💻</span>VS Code</span>
-                    <span class="skill-tag"><span class="skill-icon">📮</span>Postman</span>
-                    <span class="skill-tag"><span class="skill-icon">🔧</span>Webpack</span>
-                    <span class="skill-tag"><span class="skill-icon">⚡</span>Vite</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Specialized Skills</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag"><span class="skill-icon">📱</span>Mobile Development</span>
-                    <span class="skill-tag"><span class="skill-icon">🏥</span>Healthcare Tech</span>
-                    <span class="skill-tag"><span class="skill-icon">🌱</span>IoT Integration</span>
-                    <span class="skill-tag"><span class="skill-icon">🎮</span>Gaming Platforms</span>
-                    <span class="skill-tag"><span class="skill-icon">🤖</span>AI Integration</span>
-                    <span class="skill-tag"><span class="skill-icon">📊</span>CRM Systems</span>
-                    <span class="skill-tag"><span class="skill-icon">🏢</span>SaaS Development</span>
-                    <span class="skill-tag"><span class="skill-icon">🔧</span>System Integration</span>
+            <div class="skill-box">
+                <h3>DevOps & Cloud</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Jenkins</span>
+                    <span class="skill-item">AWS</span>
+                    <span class="skill-item">GCP</span>
+                    <span class="skill-item">Nginx</span>
+                    <span class="skill-item">CI/CD</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="fade-in">
-        <h2 class="section-title">Work Experience</h2>
-        <div class="experience-timeline">
-            <div class="experience-item">
-                <div class="experience-title">MERN Stack & React Native Developer</div>
-                <div class="experience-company">Blocmatrix IT Solutions</div>
-                <div class="experience-duration">April 2022 - Present</div>
-                <div class="experience-description">
-                    Developed scalable and high-performance web applications using the MERN stack.
-                    Designed responsive user interfaces with React.js and integrated REST APIs with JWT authentication.
-                    Collaborated with cross-functional teams and worked with Docker and Nginx for deployment.
+    <section id="experience">
+        <div class="section-header">
+            <div class="section-tag">Career Journey</div>
+            <h2 class="section-title">Work Experience</h2>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">MERN Stack & React Native Developer</div>
+                    <div class="timeline-company">Blocmatrix IT Solutions</div>
+                    <div class="timeline-date">April 2022 - Present</div>
+                    <div class="timeline-desc">Developed scalable web applications using MERN stack. Designed responsive UIs with React.js and integrated REST APIs with JWT authentication. Collaborated with cross-functional teams and worked with Docker and Nginx for deployment.</div>
                 </div>
             </div>
-            <div class="experience-item">
-                <div class="experience-title">Full Stack Developer</div>
-                <div class="experience-company">Vhonk Digital Media & Marketing</div>
-                <div class="experience-duration">April 2021 - April 2022</div>
-                <div class="experience-description">
-                    Worked on Hospital Management Project using React.js and Node.js.
-                    Developed dynamic user interfaces and implemented features for patient records,
-                    appointments, and billing with MongoDB integration.
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Full Stack Developer</div>
+                    <div class="timeline-company">Vhonk Digital Media & Marketing</div>
+                    <div class="timeline-date">April 2021 - April 2022</div>
+                    <div class="timeline-desc">Worked on Hospital Management Project using React.js and Node.js. Developed dynamic user interfaces and implemented features for patient records, appointments, and billing with MongoDB integration.</div>
                 </div>
             </div>
-            <div class="experience-item">
-                <div class="experience-title">Web Developer</div>
-                <div class="experience-company">S2h Minds</div>
-                <div class="experience-duration">Feb 2020 - Feb 2021</div>
-                <div class="experience-description">
-                    Developed the Hunger App, a PHP-based food ordering and delivery platform.
-                    Built features for user registration, order tracking, and restaurant listings using
-                    PHP, MySQL, and JavaScript.
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Web Developer</div>
+                    <div class="timeline-company">S2h Minds</div>
+                    <div class="timeline-date">Feb 2020 - Feb 2021</div>
+                    <div class="timeline-desc">Developed the Hunger App, a PHP-based food ordering and delivery platform. Built features for user registration, order tracking, and restaurant listings using PHP, MySQL, and JavaScript.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="fade-in visible">
-        <h2 class="section-title">Featured Projects</h2>
+    <section id="projects">
+        <div class="section-header">
+            <div class="section-tag">Portfolio</div>
+            <h2 class="section-title">Featured Projects</h2>
+        </div>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-logo project1">🌱</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #4ade80, #22c55e);">🌱</div>
                 <div class="project-title">Project 1</div>
                 <div class="project-duration">Duration: 12 Months</div>
-                <div class="project-description">
-                    Spearheaded the development of a plant-based tracking and operation management application
-                    for agriculture. Led core feature development for tracking plant growth, monitoring environmental
-                    factors, and managing resources with 15% increase in user satisfaction.
-                </div>
+                <div class="project-desc">Plant-based tracking and operation management application for agriculture with environmental monitoring and resource management features.</div>
                 <div class="project-tags">
                     <span class="project-tag">React Native</span>
                     <span class="project-tag">Node.js</span>
                     <span class="project-tag">MongoDB</span>
-                    <span class="project-tag">IoT Integration</span>
+                    <span class="project-tag">IoT</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project2">🏥</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🏥</div>
                 <div class="project-title">Project 2</div>
                 <div class="project-duration">Duration: 12 Months</div>
-                <div class="project-description">
-                    Worked as Frontend Developer on IoT device mobile software integrating ECG, SpO2,
-                    and temperature monitoring features for real-time health insights. Led UI/UX design
-                    and development for seamless user experience.
-                </div>
+                <div class="project-desc">IoT device mobile software integrating ECG, SpO2, and temperature monitoring for real-time health insights with seamless UI/UX.</div>
                 <div class="project-tags">
                     <span class="project-tag">React Native</span>
                     <span class="project-tag">IoT</span>
                     <span class="project-tag">Health Tech</span>
-                    <span class="project-tag">Real-time Data</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project3">🤖</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">🤖</div>
                 <div class="project-title">Project 3</div>
                 <div class="project-duration">Duration: 8 Months</div>
-                <div class="project-description">
-                    Led development and launch of comprehensive hospital appointment management software
-                    for patients and healthcare facilities, improving scheduling efficiency and user experience
-                    significantly with AI-powered features.
-                </div>
+                <div class="project-desc">Hospital appointment management software with AI-powered features improving scheduling efficiency significantly.</div>
                 <div class="project-tags">
                     <span class="project-tag">React Native</span>
-                    <span class="project-tag">AI Integration</span>
+                    <span class="project-tag">AI</span>
                     <span class="project-tag">Healthcare</span>
-                    <span class="project-tag">Appointment System</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project4">🚜</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">🚜</div>
                 <div class="project-title">Project 4</div>
                 <div class="project-duration">Duration: 10 Months</div>
-                <div class="project-description">
-                    Developed comprehensive agriculture management platform with crop monitoring, weather integration,
-                    and farming analytics. Implemented real-time data visualization and predictive farming insights
-                    for modern agricultural practices.
-                </div>
+                <div class="project-desc">Agriculture management platform with crop monitoring, weather integration, and farming analytics.</div>
                 <div class="project-tags">
                     <span class="project-tag">React</span>
                     <span class="project-tag">Node.js</span>
-                    <span class="project-tag">Agriculture Tech</span>
                     <span class="project-tag">Analytics</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project5">💼</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">💼</div>
                 <div class="project-title">Project 5</div>
                 <div class="project-duration">Duration: 8 Months</div>
-                <div class="project-description">
-                    Built comprehensive CRM dashboard for customer relationship management with advanced analytics,
-                    user tracking, and business intelligence features. Implemented real-time data visualization
-                    and automated reporting systems.
-                </div>
+                <div class="project-desc">CRM dashboard with advanced analytics, user tracking, and business intelligence features.</div>
                 <div class="project-tags">
                     <span class="project-tag">React</span>
                     <span class="project-tag">CRM</span>
                     <span class="project-tag">Analytics</span>
-                    <span class="project-tag">Dashboard</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project6">💉</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);">💉</div>
                 <div class="project-title">Project 6</div>
                 <div class="project-duration">Duration: 7 Months</div>
-                <div class="project-description">
-                    Developed comprehensive vaccination management website with appointment scheduling,
-                    vaccine tracking, digital certificates, and real-time availability updates.
-                    Enhanced public health management during COVID-19.
-                </div>
+                <div class="project-desc">Vaccination management website with appointment scheduling, vaccine tracking, and digital certificates.</div>
                 <div class="project-tags">
                     <span class="project-tag">React</span>
                     <span class="project-tag">Next.js</span>
                     <span class="project-tag">Healthcare</span>
-                    <span class="project-tag">Vaccination</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project7">🔬</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #10b981, #059669);">🔬</div>
                 <div class="project-title">Project 7</div>
                 <div class="project-duration">Duration: 6 Months</div>
-                <div class="project-description">
-                    Developed frontend for medical application managing COVID-19 vaccinations including
-                    Pfizer and other vaccines using React. Created intuitive interface for streamlined
-                    vaccine appointment scheduling and tracking.
-                </div>
+                <div class="project-desc">Medical application managing COVID-19 vaccinations with intuitive interface for streamlined scheduling.</div>
                 <div class="project-tags">
                     <span class="project-tag">React</span>
-                    <span class="project-tag">Medical App</span>
-                    <span class="project-tag">Vaccination</span>
+                    <span class="project-tag">Medical</span>
                     <span class="project-tag">COVID-19</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project8">🏏</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">🏏</div>
                 <div class="project-title">Project 8</div>
                 <div class="project-duration">Duration: 6 Months</div>
-                <div class="project-description">
-                    Core team member implementing web-based gaming platform for cricket enthusiasts using Next.js.
-                    Delivered engaging and interactive user experience with seamless functionality, real-time scoring,
-                    and tournament management features.
-                </div>
+                <div class="project-desc">Web-based gaming platform for cricket enthusiasts with real-time scoring and tournament management.</div>
                 <div class="project-tags">
                     <span class="project-tag">Next.js</span>
                     <span class="project-tag">Gaming</span>
-                    <span class="project-tag">Cricket</span>
                     <span class="project-tag">Real-time</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project9">⚡</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #65a30d, #4d7c0f);">⚡</div>
                 <div class="project-title">Project 9</div>
                 <div class="project-duration">Duration: 9 Months</div>
-                <div class="project-description">
-                    Developed multiple SaaS applications including gaming platforms with dice and reel mechanics.
-                    Implemented subscription management, user analytics, payment integration, and scalable
-                    multi-tenant architecture for enterprise clients.
-                </div>
+                <div class="project-desc">Multiple SaaS applications with gaming platforms, subscription management, and payment integration.</div>
                 <div class="project-tags">
                     <span class="project-tag">SaaS</span>
                     <span class="project-tag">React</span>
                     <span class="project-tag">Gaming</span>
-                    <span class="project-tag">Payment Integration</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project10">📝</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">📝</div>
                 <div class="project-title">Project 10</div>
                 <div class="project-duration">Duration: 8 Months</div>
-                <div class="project-description">
-                    Built comprehensive SaaS-based Content Management System with integrated CRM functionality.
-                    Features include multi-tenant architecture, role-based access control, content workflow
-                    management, and customer relationship automation.
-                </div>
+                <div class="project-desc">SaaS-based CMS with integrated CRM, multi-tenant architecture, and role-based access control.</div>
                 <div class="project-tags">
                     <span class="project-tag">SaaS</span>
                     <span class="project-tag">CMS</span>
                     <span class="project-tag">CRM</span>
-                    <span class="project-tag">Multi-tenant</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project11">🍕</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">🍕</div>
                 <div class="project-title">Project 11</div>
                 <div class="project-duration">Duration: 6 Months</div>
-                <div class="project-description">
-                    Core member in development of food query and rating software allowing
-                    users to explore, review, and rate dining experiences. Enhanced user interaction
-                    with food-related information and improved satisfaction ratings.
-                </div>
+                <div class="project-desc">Food query and rating software allowing users to explore, review, and rate dining experiences.</div>
                 <div class="project-tags">
                     <span class="project-tag">React Native</span>
                     <span class="project-tag">Food Tech</span>
                     <span class="project-tag">Reviews</span>
-                    <span class="project-tag">Mobile App</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project12">🎭</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">🎭</div>
                 <div class="project-title">Project 12</div>
                 <div class="project-duration">Duration: 10 Months</div>
-                <div class="project-description">
-                    Developed advanced CRM system for gaming platforms managing user engagement, game analytics,
-                    payment processing, and customer lifecycle. Implemented real-time dashboard with magical UI/UX
-                    design and automated marketing workflows for enhanced user retention.
-                </div>
+                <div class="project-desc">Advanced CRM system for gaming platforms with user engagement tracking and payment processing.</div>
                 <div class="project-tags">
                     <span class="project-tag">React</span>
-                    <span class="project-tag">Node.js</span>
-                    <span class="project-tag">Gaming CRM</span>
-                    <span class="project-tag">Analytics</span>
+                    <span class="project-tag">CRM</span>
+                    <span class="project-tag">Gaming</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project13">🚀</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">🚀</div>
                 <div class="project-title">Project 13</div>
                 <div class="project-duration">Duration: 6 Months</div>
-                <div class="project-description">
-                    Implemented comprehensive CI/CD pipeline with Docker containerization and Jenkins automation.
-                    Set up automatic deployment for web applications and mobile apps with version management,
-                    rollback capabilities, and zero-downtime deployments across multiple environments.
-                </div>
+                <div class="project-desc">CI/CD pipeline with Docker containerization and Jenkins automation for automatic deployment.</div>
                 <div class="project-tags">
                     <span class="project-tag">Docker</span>
                     <span class="project-tag">Jenkins</span>
                     <span class="project-tag">CI/CD</span>
-                    <span class="project-tag">Automation</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project14">📦</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #059669, #047857);">📦</div>
                 <div class="project-title">Project 14</div>
                 <div class="project-duration">Duration: 8 Months</div>
-                <div class="project-description">
-                    Led migration of 15+ existing applications to Docker containers with orchestration setup.
-                    Implemented microservices architecture, container optimization, and Kubernetes deployment.
-                    Achieved 60% reduction in deployment time and improved scalability.
-                </div>
+                <div class="project-desc">Migration of 15+ applications to Docker containers with microservices architecture and Kubernetes.</div>
                 <div class="project-tags">
                     <span class="project-tag">Docker</span>
                     <span class="project-tag">Kubernetes</span>
                     <span class="project-tag">Migration</span>
-                    <span class="project-tag">Microservices</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project15">⚙️</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #0ea5e9, #0284c7);">⚙️</div>
                 <div class="project-title">Project 15</div>
                 <div class="project-duration">Duration: 5 Months</div>
-                <div class="project-description">
-                    Implemented GitHub Actions workflows for automatic testing, building, and deployment across
-                    multiple projects. Set up automated code quality checks, security scanning, and multi-environment
-                    deployments with approval workflows and notification systems.
-                </div>
+                <div class="project-desc">GitHub Actions workflows for automatic testing, building, and deployment with code quality checks.</div>
                 <div class="project-tags">
                     <span class="project-tag">GitHub Actions</span>
                     <span class="project-tag">CI/CD</span>
                     <span class="project-tag">Automation</span>
-                    <span class="project-tag">Testing</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project16">📧</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #1f2937, #374151);">📧</div>
                 <div class="project-title">Project 16</div>
                 <div class="project-duration">Duration: 7 Months</div>
-                <div class="project-description">
-                    Built custom mail server infrastructure with SMTP/IMAP configuration, spam filtering,
-                    and email automation services. Implemented mailing service APIs with template management,
-                    bulk email processing, and delivery tracking with Cloudflare tunnel integration.
-                </div>
+                <div class="project-desc">Custom mail server with SMTP/IMAP configuration, spam filtering, and email automation.</div>
                 <div class="project-tags">
                     <span class="project-tag">Mail Server</span>
-                    <span class="project-tag">SMTP/IMAP</span>
-                    <span class="project-tag">Email APIs</span>
-                    <span class="project-tag">Cloudflare</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-logo project17">🗺️</div>
-                <div class="project-title">Project 17</div>
-                <div class="project-duration">Duration: 9 Months</div>
-                <div class="project-description">
-                    Developed custom mapping server with tile generation, geospatial data processing,
-                    and real-time location services. Implemented custom map styling, route optimization,
-                    and integration with mobile applications for location-based features.
-                </div>
-                <div class="project-tags">
-                    <span class="project-tag">Map Server</span>
-                    <span class="project-tag">Geospatial</span>
-                    <span class="project-tag">Location Services</span>
+                    <span class="project-tag">SMTP</span>
                     <span class="project-tag">APIs</span>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-logo project18">🏥</div>
+                <div class="project-icon" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">🗺️</div>
+                <div class="project-title">Project 17</div>
+                <div class="project-duration">Duration: 9 Months</div>
+                <div class="project-desc">Custom mapping server with tile generation, geospatial data processing, and location services.</div>
+                <div class="project-tags">
+                    <span class="project-tag">Map Server</span>
+                    <span class="project-tag">Geospatial</span>
+                    <span class="project-tag">APIs</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);">🏥</div>
                 <div class="project-title">Project 18</div>
                 <div class="project-duration">Duration: 12 Months</div>
-                <div class="project-description">
-                    Managed development of comprehensive hospital website and admin panel providing platform
-                    for patient interaction and administrative tasks. Enhanced patient engagement and
-                    streamlined hospital administration with modern healthcare solutions.
-                </div>
+                <div class="project-desc">Comprehensive hospital website and admin panel for patient interaction and administrative tasks.</div>
                 <div class="project-tags">
                     <span class="project-tag">React</span>
                     <span class="project-tag">Node.js</span>
                     <span class="project-tag">Healthcare</span>
-                    <span class="project-tag">Admin Panel</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="fade-in">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-content">
+    <section id="contact">
+        <div class="section-header">
+            <div class="section-tag">Get In Touch</div>
+            <h2 class="section-title">Let's Work Together</h2>
+        </div>
+        <div class="contact-container">
             <div class="contact-info">
-                <h3>Let's Connect</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                    I'm always interested in new opportunities and exciting projects.
-                    Feel free to reach out if you'd like to work together!
-                </p>
+                <h3>Contact Me</h3>
+                <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to work together!</p>
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div>
@@ -745,296 +1269,91 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary"><span>Send Message</span></button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">💼</a>
-            <a href="#" class="social-link" title="GitHub">🐱</a>
-            <a href="#" class="social-link" title="Twitter">🐦</a>
-            <a href="mailto:pranaykodam.213@gmail.com" class="social-link" title="Email">✉️</a>
+            <a href="#" class="social-link">💼</a>
+            <a href="#" class="social-link">🐱</a>
+            <a href="#" class="social-link">🐦</a>
+            <a href="mailto:pranaykodam.213@gmail.com" class="social-link">✉️</a>
         </div>
         <p>&copy; 2025 Pranay Kumar Kodam. All rights reserved.</p>
-        <p>Built with ❤️ using HTML, CSS & JavaScript</p>
+        <p>Designed & crafted with precision</p>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop">↑</button>
-
     <script>
-        // Your existing JavaScript remains the same
-        // Loader
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
+        const themeBtn = document.getElementById('themeBtn');
         const body = document.body;
+        const savedTheme = JSON.parse(window.name || '{}').theme || 'dark';
+        
+        body.setAttribute('data-theme', savedTheme);
+        themeBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
 
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
+        themeBtn.addEventListener('click', () => {
+            const current = body.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
             body.setAttribute('data-theme', newTheme);
-            themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-
-            localStorage.setItem('theme', newTheme);
+            themeBtn.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+            window.name = JSON.stringify({theme: newTheme});
         });
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        body.setAttribute('data-theme', savedTheme);
-        themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
 
-        // Smooth Scrolling for Navigation Links
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-
-                // Close mobile menu when a link is clicked
-                const mobileNavLinks = document.getElementById('mobileNavLinks');
-                if (mobileNavLinks.classList.contains('active')) {
-                    mobileNavLinks.classList.remove('active');
-                    document.getElementById('mobileMenu').classList.remove('active');
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    navMenu.classList.remove('active');
                 }
             });
         });
 
-        // Scroll Progress Bar
-        window.addEventListener('scroll', () => {
-            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.getElementById('scrollProgressBar').style.width = scrolled + '%';
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const mailto = `mailto:pranaykodam.213@gmail.com?subject=${encodeURIComponent(formData.get('subject'))}&body=${encodeURIComponent(`Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\n\nMessage:\n${formData.get('message')}`)}`;
+            window.location.href = mailto;
+            alert('Thank you! Your email client will open.');
+            form.reset();
         });
 
-        // Scroll to Top Button
-        const scrollTopBtn = document.getElementById('scrollTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
             });
         });
-
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(section);
         });
-
-        // Navbar Background on Scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                if (body.getAttribute('data-theme') === 'light') {
-                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                }
-            } else {
-                navbar.style.background = 'rgba(10, 10, 10, 0.9)';
-                if (body.getAttribute('data-theme') === 'light') {
-                    navbar.style.background = 'rgba(255, 255, 255, 0.9)';
-                }
-            }
-        });
-
-        // Contact Form Handling
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(e.target);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-
-            // Create mailto link
-            const mailtoLink = `mailto:pranaykodam.213@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-
-            // Open default email client
-            window.location.href = mailtoLink;
-
-            // Show success message
-            alert('Thank you for your message! Your default email client should open now.');
-
-            // Reset form
-            e.target.reset();
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileNavLinks = document.getElementById('mobileNavLinks');
-
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileNavLinks.classList.toggle('active');
-
-            // Toggle hamburger menu animation
-            const spans = mobileMenu.querySelectorAll('span');
-            if (mobileMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileNavLinks.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                mobileNavLinks.classList.remove('active');
-
-                // Reset hamburger menu animation
-                const spans = mobileMenu.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-
-        // Add some interactive animations
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-3px) scale(1.02)';
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Skill tags hover effect
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', () => {
-                tag.style.transform = 'scale(1.1) rotate(2deg)';
-            });
-
-            tag.addEventListener('mouseleave', () => {
-                tag.style.transform = 'scale(1) rotate(0deg)';
-            });
-        });
-
-        // Project cards tilt effect
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-            });
-        });
-
-        // Add typing effect to hero title
-        const heroTitle = document.querySelector('.hero-title');
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-
-        setTimeout(() => {
-            let i = 0;
-            const typeTimer = setInterval(() => {
-                if (i < text.length) {
-                    heroTitle.textContent += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typeTimer);
-                }
-            }, 100);
-        }, 1500);
-
-        // Add particles effect to hero background
-        const hero = document.querySelector('.hero');
-        const particlesContainer = document.createElement('div');
-        particlesContainer.style.position = 'absolute';
-        particlesContainer.style.top = '0';
-        particlesContainer.style.left = '0';
-        particlesContainer.style.width = '100%';
-        particlesContainer.style.height = '100%';
-        particlesContainer.style.pointerEvents = 'none';
-        particlesContainer.style.overflow = 'hidden';
-        hero.appendChild(particlesContainer);
-
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = '2px';
-            particle.style.height = '2px';
-            particle.style.background = 'var(--accent-color)';
-            particle.style.borderRadius = '50%';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = '100%';
-            particle.style.opacity = '0.7';
-            particle.style.transition = 'all 3s linear';
-
-            particlesContainer.appendChild(particle);
-
-            setTimeout(() => {
-                particle.style.transform = `translateY(-${window.innerHeight + 100}px)`;
-                particle.style.opacity = '0';
-            }, 100);
-
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 3000);
-        }
-
-        setInterval(createParticle, 500);
     </script>
 </body>
-
 </html>
